@@ -7,11 +7,9 @@ export default function App() {
         className="bg-black px-3 py-2 rounded-md"
         animate={{
           backgroundColor: "#f00",
-          color: "#0f0",
-          // transform: "scale(2) translateY(50px)",
-          scale: 2,
-          y: 50,
-          rotate: 1800,
+        }}
+        initial={{
+          backgroundColor: "#00f",
         }}
       >
         Hello world
