@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Expose the port your app runs on
-EXPOSE 3000
+EXPOSE 5173
 
-# Command to run your app, you might want to change this based on your npm script
-CMD ["npm", "run", "serve"]
+# Command to run your app using Vite's development server
+CMD ["npm", "run", "dev"]
