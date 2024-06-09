@@ -1,32 +1,23 @@
-# Use Node.js LTS version as the base image
-FROM node:14 AS builder
-
-# Set the working directory
-WORKDIR /app
-
-# Copy package.json and yarn.lock to the working directory
-COPY package.json yarn.lock ./
-
-# Install dependencies
-RUN yarn install --frozen-lockfile
-
-# Copy the rest of the application code
-COPY . .
-
-# Build the React app
-RUN yarn build
-
-# Create a new image with only the production assets
+# Use node base image with a specified version
 FROM node:14-alpine
 
-# Set the working directory
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the built app from the previous stage
-COPY --from=builder /app/build ./build
+# Copy package.json and package-lock.json to the working directory
+COPY package*.json ./
 
-# Expose the port that the app runs on
+# Install dependencies
+RUN npm install
+
+# Copy all files from the current directory to the working directory inside the container
+COPY . .
+
+# Build your React app
+RUN npm run build
+
+# Expose the port your app runs on
 EXPOSE 3000
 
-# Serve the app
-CMD ["npx", "serve", "-s", "build"]
+# Command to run your app, you might want to change this based on your npm script
+CMD ["npm", "run", "serve"]
