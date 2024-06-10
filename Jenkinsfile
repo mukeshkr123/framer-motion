@@ -2,9 +2,25 @@ pipeline {
     agent any
     
     stages {
-        stage('Hello') {
+        stage('Build') {
             steps {
-                echo 'Hello World'
+                echo 'Building...'
+                // Insert build commands here, e.g.:
+                // sh 'make'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                // Insert test commands here, e.g.:
+                // sh 'make test'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+                // Insert deploy commands here, e.g.:
+                // sh 'scp target/myapp.war user@server:/path/to/deploy'
             }
         }
     }
