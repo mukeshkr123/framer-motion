@@ -24,4 +24,16 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            //  
+            ech 'always...'
+        }
+        success {
+            ech 'success...`
+        }
+        failure {
+            ech `error...`
+        }
+    }
 }
